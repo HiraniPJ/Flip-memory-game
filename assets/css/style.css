@@ -1,10 +1,10 @@
 /*stylesheet for flip card game*/
 
 body {
-    display:flex; 
-    justify-content:center;
+    display: flex; 
+    justify-content: center;
     align-items: center;
-    height:100vh;
+    height: 100vh;
     flex-direction: column;
 }
 
@@ -13,30 +13,34 @@ body {
     height: 150px;
     margin: 10px;
     perspective: 1000px;
-    display: inline-block;    
+    display: inline-block; 
+    position: relative;   
 }
 .card-front {
-    background-color: #fff ;
+    background-color: #fff;
 }
 
 .card-back {
-    background-color: #e9e7e7 ;
+    background-color: #e9e7e7;
     transform: rotateY(180deg);
 }
 .card-front, .card-back {
     width: 100%;
-    height:100%;
-    position:absolute;
-    backface-visibility:hidden;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
     transition: transform 0.6s;
     border: 1px solid #000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .card-flipped .card-front{
-    transform:rotateY(180deg);
+    transform: rotateY(180deg);
 }
+.card-flipped .card-front{
+    transform: rotateY(-180deg);
+}    
 .card-flipped .card-back{
-    transform:rotateY(0deg);
+    transform: rotateY(0deg);
 }

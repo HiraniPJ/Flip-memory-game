@@ -19,6 +19,6 @@ function saveName() {
  function flipCard(index) {
     const cards = document.querySelectorAll('.card');
     if (index < cards.length) {
-        cards[index].classList.toggle('flipped');
+        cards[index].classList.toggle('card-flipped');
     }
  }
