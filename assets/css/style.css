@@ -7,3 +7,22 @@ body {
     height:100vh;
     flex-direction: column;
 }
+
+.card {
+    width: 100px;
+    height: 150px;
+    margin: 10px;
+    perspective: 1000px;
+    display: inline-block;    
+}
+.card-front {
+    background-color: #fff ;
+}
+
+.card-back {
+    background-color: #e9e7e7 ;
+    transform: rotateY(180deg);
+}
+
+
+
