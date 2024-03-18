@@ -15,3 +15,10 @@ function saveName() {
     }
 }
 
+//flipCard Function//
+ function flipCard(index) {
+    const cards = document.querySelectorAll('.card');
+    if (index < cards.length) {
+        cards[index].classList.toggle('flipped');
+    }
+ }
