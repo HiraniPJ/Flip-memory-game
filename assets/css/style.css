@@ -31,3 +31,10 @@ a:hover{
 	left:50%;
 	margin:-225px 0 0 -225px
 }
+.cardContainer .card{
+    width:50%;
+	height:50%;
+	cursor:default;
+	position:relative
+}
+
