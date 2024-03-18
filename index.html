@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Animal Flip Card Memory Game</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <script src="assets/js/script.js"></script>
+
+<!--Inputing Username-->
+<div id="name">
+    <label for="userName">Enter your Name:</label>
+    <input type ="text" id="userName" name="userName">
+    <button onclick ="saveName()">Start</button>
+</div>
+
+<!--Displaying Username-->
+<div id ="userNameDisplay" class="hide">Let's Play, <span id ="userNameSpan"></span>!</div>
+
 </body>
 </html>
