@@ -52,8 +52,6 @@ function saveName() {
 
       }
 
-
-
       // Start game
   $('.play').on('click', function(){
     increase('flip_abandoned');
@@ -68,8 +66,28 @@ function saveName() {
      else if(level == 14) { difficulty = 'medium'; timer *= level * 5; }
      else if(level == 28) { difficulty = 'hard';   timer *= level * 6; }       
 
+     $('#game').addClass(difficulty);
 
-     
+     $('.container').fadeOut(250, function(){
+       var startGame  = $.now(),
+           obj = [];
+
+// Create and add shuffled cards to game
+      for(i = 0; i < level; i++) { obj.push(i); }
+
+          var shu  = shuffle( $.merge(obj, obj) ),
+          cardSize = 100/Math.sqrt(shu.length);
+
+      for(i = 0; i < shu.length; i++){
+        var code = shu[i];
+        if(code < 10) code = "0" + code;
+        if(code == 30) code = 10;
+        if(code == 31) code = 21;
+        $('<div class="card" style="width:'+cardSize+'%;height:'+cardSize+'%;">'+
+            '<div class="flipper"><div class="front"></div><div class="back" data-f="&#xf0'+code+';"></div></div>'+
+          '</div>').appendTo('#game');
+      }
+
 
  // Set card actions
  $('#game .card').on({'mousedown' : function(){
