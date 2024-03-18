@@ -7,40 +7,27 @@ body {
     height: 100vh;
     flex-direction: column;
 }
+a{
+    text-decoration:none;
+	color:#fff;
+	display:block;
+	font:bold 18px/75px 'Open Sans';
+	text-transform:uppercase;
+	text-align:center;
+	padding:0;
+	margin:0 1px;
+}
+a:hover{
+    color:#fff;
+	background:rgba(255, 255, 255, .1)
+}
 
-.card {
-    width: 100px;
-    height: 150px;
-    margin: 10px;
-    perspective: 1000px;
-    display: inline-block; 
-    position: relative;   
-}
-.card-front {
-    background-color: #fff;
-}
-
-.card-back {
-    background-color: #e9e7e7;
-    transform: rotateY(180deg);
-}
-.card-front, .card-back {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: transform 0.6s;
-    border: 1px solid #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.card-flipped .card-front{
-    transform: rotateY(180deg);
-}
-.card-flipped .card-front{
-    transform: rotateY(-180deg);
-}    
-.card-flipped .card-back{
-    transform: rotateY(0deg);
+/*Main screen*/
+.cardContainer {
+    width:450px;
+	height:450px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-225px 0 0 -225px
 }
