@@ -19,17 +19,33 @@
 <!--Displaying Username & option card container-->
 
     <div id ="userNameDisplay" class="hide">Let's Play, <span id ="userNameSpan"></span>!</div>
-<div id="cardContainer" class="hide">
+
+    <div id="game"></div>
+
+<div id="cardContainer">
 
     <!--CARD ONE-->
-    <div class="card" onclick="flipCard(0)">
-        <div class="card-front">F</div>
-        <div class="card-back">BACK 1</div>
+    <div class="left-card">
+        <div class="flipper">
+            <div class="front card1">F</div>
+            <div class="back box" id="stats">
+                <div class="padded">
+                    <h2>Figures</h2>
+                    <a href="javascript:;" class="playnow">Play Now</a>
+                </div>
+            </div>
+        </div>
     </div>
     <!--CARD TWO-->
-    <div class="card" onclick="flipCard(1)">
-        <div class="card-front">L</div>
-        <div class="card-back">BACK 2</div>
+    <div class="card">
+        <div class="flipper">
+            <div class="front card2">L</div>
+            <div class="back box levels">
+                    <a href="javascript:;" class="play">Easy</a>
+                    <a href="javascript:;" class="play">Medium</a>
+                    <a href="javascript:;" class="play">Hard</a>
+            </div>
+        </div>
     </div>    
     <!--CARD THREE-->
     <div class="card" onclick="flipCard(2)">
