@@ -4,7 +4,7 @@ document.getElementById('cardContainer'). style.display ='none';
 
 //userName display script//
 function saveName() {
-    const userName =document.getElementById('userName').ariaValueText;
+    const userName = document.getElementById('userName').value;
     if (userName) {
         document.getElementById('userNameSpan').textContent = userName;
         document.getElementById('userNameDisplay').classList.remove('hide');
@@ -14,3 +14,4 @@ function saveName() {
         alert("Please enter your name.");
     }
 }
+
