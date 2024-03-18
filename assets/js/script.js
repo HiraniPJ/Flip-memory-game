@@ -22,3 +22,29 @@ function saveName() {
         cards[index].classList.toggle('card-flipped');
     }
  }
+
+
+//Set keyboard (p) pause and [esc} actions//
+$(window).off().on('keyup', function(e){
+    // Pause game. (p)
+    if(e.keycode == 80)
+    {
+        if( $('#game').attr('data-paused') == 1 )
+        {
+            $('#game').attr('data-paused', '0');
+        }
+    } 
+    else 
+    {
+        $('#game').attr('data-paused', '1');
+    }
+
+    // Abandon game. (Esc)
+    if(e.keyCode == 27)
+    {
+        startScreen('flip');
+        // If game was paused
+        if( $('#game').attr('data-paused') == 1 ){
+          $('#game').attr('data-paused', '0');
+        }
+    }
