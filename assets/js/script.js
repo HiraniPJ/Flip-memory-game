@@ -52,6 +52,25 @@ function saveName() {
 
       }
 
+
+
+      // Start game
+  $('.play').on('click', function(){
+    increase('flip_abandoned');
+	$('.info').fadeOut();
+
+    var difficulty = '',
+        timer      = 1000,
+        level      = $(this).data('level');
+
+     // Set game timer and difficulty   
+     if     (level ==  6) { difficulty = 'easy'; timer *= level * 4; }
+     else if(level == 14) { difficulty = 'medium'; timer *= level * 5; }
+     else if(level == 28) { difficulty = 'hard';   timer *= level * 6; }       
+
+
+     
+
  // Set card actions
  $('#game .card').on({'mousedown' : function(){
     if($('#game').attr('data-paused') == 1) {return;}
