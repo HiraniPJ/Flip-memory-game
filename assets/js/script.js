@@ -17,7 +17,31 @@ const state = {
     totalFlips: 0,
     totalTime: 0,
     loop: null
-}
+};
+
+// shuffle to randomize the cards on the board
+const shuffle = array => {
+    const clonedArray = [...array];
+    for (let index = clonedArray.length - 1; index > 0; index--) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        clonedArray[index] = clonedArray[randomIndex]
+        clonedArray[randomIndex] = original
+    }
+    return clonedArray;
+};
+
+//Pick random items from an array
+const pickRandom = (array, items) => {
+    const clonedArray = [...array];
+    const randomPicks = [];
+    for (let index = 0; index < items; index++) {
+        const randomIndex = Math.floor(Math.random() * clonedArray.length)
+        
+        randomPicks.push(clonedArray[randomIndex])
+        clonedArray.splice(randomIndex, 1)
+    }
+    return randomPicks
+};
 
 //Generate the game board with cards
 const generateGame = () => {
@@ -44,29 +68,6 @@ const parser = new DOMParser().parseFromString(cards, 'text/html')
 selectors.board.replaceWith(parser.querySelector('.board'))
 }
 
-// shuffle to randomize the cards on the board
-const shuffle = array => {
-    const clonedArray = [...array];
-    for (let index = clonedArray.length - 1; index > 0; index--) {
-        const randomIndex = Math.floor(Math.random() * (index + 1));
-        clonedArray[index] = clonedArray[randomIndex]
-        clonedArray[randomIndex] = original
-    }
-    return clonedArray;
-};
-//Pick random items from an array
-const pickRandom = (array, items) => {
-    const clonedArray = [...array];
-    const randomPicks = [];
-    for (let index = 0; index < items; index++) {
-        const randomIndex = Math.floor(Math.random() * clonedArray.length)
-        
-        randomPicks.push(clonedArray[randomIndex])
-        clonedArray.splice(randomIndex, 1)
-    }
-    return randomPicks
-};
-
 // Starts the game, initializes timer, and disables start button
 const startGame = () => {
     state.gameStarted = true
@@ -86,6 +87,13 @@ const startGame = () => {
         selectors.timer.innerText = `time: ${state.totalTime} sec`;
     }, 1000);
 };
+
+// Flip back cards that are not matched
+const flipBackCards = () => {
+    document.querySelectorAll('.card:not(.matched)').forEach(card => card.classList.remove('flipped'));
+    state.flippedCards = 0;
+};
+
 
 //event listeners for game interaction
 document.addEventListener('DOMContentLoaded', () => {
