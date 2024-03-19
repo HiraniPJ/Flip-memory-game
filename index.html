@@ -7,70 +7,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
+    
     <script src="assets/js/script.js"></script>
-
-<!--Inputing Username-->
-<div id="name">
-    <label for="userName">Enter Your Name:</label>
-    <input type ="text" id="userName" name="userName">
-    <button onclick ="saveName()">Start</button>
-</div>
-
-<!--Displaying Username & option card container-->
-
-    <div id ="userNameDisplay" class="hide">Let's Play, <span id ="userNameSpan"></span>!</div>
-
-    <div id="game"></div>
-
-<div id="cardContainer">
-
-    <!--CARD ONE-->
-    <div class="left-card">
-        <div class="flipper">
-            <div class="front card1">F</div>
-            <div class="back box" id="stats">
-                <div class="padded">
-                    <h2>Figures</h2>
-                    <a href="javascript:;" class="playnow">Play Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--CARD TWO-->
-    <div class="card">
-        <div class="flipper">
-            <div class="front card2">L</div>
-            <div class="back box levels">
-                    <a href="javascript:;" data-level="6" class="play">Easy</a>
-                    <a href="javascript:;" data-level="14" class="play">Medium</a>
-                    <a href="javascript:;" data-level="28" class="play">Hard</a>
-            </div>
-        </div>
-    </div>    
-    <!--CARD THREE-->
-    <div class="left-card">
-        <div class="flipper">
-            <div class="front card3">I</div>
-            <div class="back box instructions">
-                <div class="padded">
-                    <h2>Instructions</h2>
-                    <p> Press [p] to pause, or [ESC] to abandon game.</p>
-                    <p>Flip is a timed card memory game. Click the cards to see what Animal they uncover and try to find the matching Animal underneath the other cards.</p>
-                    <p>Uncover two matching Animals at once to eliminate them from the game.</p>
-                    <p>Eliminate all cards as fast as you can to win the game. Have FUN</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--CARD FOUR-->
-    <div class="card active twist">
-        <div class="flipper">
-          <div class="back front">
-            <div class="card4">P</div>
-          </div>
-        </div>
-      </div>
-
-</div>
 </body>
 </html>
