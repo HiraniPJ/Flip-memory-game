@@ -49,10 +49,12 @@ const pickRandom = (array, items) => {
     const clonedArray = [...array];
     const randomPicks = [];
     for (let index = 0; index < items; index++) {
-        const randomIndex = Math.floor(Math.random() * clonedArray.length);
-        randomPicks.push(clonedArray.splice(randomIndex, 1)[0]);
+        const randomIndex = Math.floor(Math.random() * clonedArray.length)
+        
+        randomPicks.push(clonedArray[randomIndex])
+        clonedArray.splice(randomIndex, 1)
     }
-    return randomPicks;
+    return randomPicks
 };
 
 // Starts the game, initializes timer, and disables start button
