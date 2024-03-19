@@ -1,9 +1,34 @@
+
 html {
     width: 100%;
     height: 100%;
+    background: linear-gradient(325deg,  #469735 0%,#59b451 50%,#068622e3 100%);
+    /* background: linear-gradient(325deg,  #1c1b1c 0%,#718500 50%,#f55454 100%); */
+
+    font-family: Fredoka;
 }
 
-/* Main game container styling */
+.msg {
+
+    display: none;
+    background-color: #5b2968;
+    width: auto;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 1px 1px 15px 2px rgb(111, 111, 111);
+}
+
+.msg p{
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: center;
+
+
+    font-size: 30px;
+    color: white;
+}
+
 .game {
     position: absolute;
     top: 50%;
@@ -11,7 +36,6 @@ html {
     transform: translate(-50%, -50%);
 }
 
-/* Styling for game controls like the start button and stats display */
 .controls {
     display: flex;
     gap: 20px;
@@ -22,14 +46,14 @@ html {
     padding-top: 10px;
 }
 
-.footer a {
+.footer a{
     text-decoration: none;
     color: #FDF8E6;
     font-size: 16px;
 }
 
-/* General button styling */
-button, .myBTN {
+
+button {
     background: #282A3A;
     color: #FFF;
     border-radius: 5px;
@@ -38,55 +62,87 @@ button, .myBTN {
     cursor: pointer;
     font-family: Fredoka;
     font-size: 18pt;
-    box-shadow: 5px 3px 15px 1px rgb(0, 139, 35);
+    box-shadow: 5px 3px 15px 1px darkblue;
     transition: all 0.5s;
 }
-button:hover {
-    color: #f3d634;
+
+.myBTN {
+    background: #282A3A;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 0;
+    cursor: pointer;
+    font-family: Fredoka;
+    font-size: 18pt;
+    box-shadow: 5px 3px 15px 1px darkblue;
+    transition: all 0.5s;
+}
+
+button:hover{
+    color: #e97b5a;
     background-color: #3e415a;
 }
 
-button.lock {
+button.lock{
     pointer-events: none;
     background-color: #4d4c4c;
 }
 
-/* Styling for disabled elements */
 .disabled {
-    color: #ff7878;
+    color: #757575;
+    /* background-color: #cccccc; */
 }
 
-/* Game stats (moves and timer) styling */
 .stats {
     color: #FFF;
     font-size: 14pt;
     border: 1px dotted floralwhite;
     padding: 10px;
-    box-shadow: 5px 3px 15px 1px rgb(0, 139, 35);
+    width: 100%;
+    box-shadow: 5px 3px 15px 1px darkblue;
     border-radius: 7px;
 }
 
-.stats .moves, .stats .timer {
+.stats .moves,.timer{
     color: #ffffff;
 }
 
-/* Board and card styling */
+.controls{
+ margin-right: 10px;
+}
+
+
+
+
 .board-container {
     position: relative;
 }
 
-.board, .win {
+.board,
+.win {
     border-radius: 5px;
     box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
-    background: linear-gradient(135deg, #095e25bd 0%, #ece929 50%, #e4b10b 100%);
+    /* background: linear-gradient(135deg,  #6f00fc 0%,#fc7900 50%,#fcc700 100%); */
+    background: linear-gradient(135deg,  #dab40ca8 0%,#fbff00 50%,#ffbb00 100%);
+
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
 }
+
 .board {
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-gap: 20px;
+}
+
+.board-container.flipped .board {
+    transform: rotateY(180deg) rotateZ(50deg);
+}
+
+.board-container.flipped .win {
+    transform: rotateY(0) rotateZ(0);
 }
 
 .card {
@@ -96,7 +152,8 @@ button.lock {
     cursor: pointer;
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     border-radius: 5px;
     width: 100%;
@@ -107,34 +164,23 @@ button.lock {
 }
 
 .card-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) rotateZ(50deg);
     font-size: 28pt;
     user-select: none;
     text-align: center;
     line-height: 100px;
     background: #FDF8E6;
 }
-/* Styling for the message that appears during game play */
-.msg {
-    display: none;
-    background-color: #282A3A;
-    width: auto;
-    border-radius: 5px;
-    padding: 5px;
-    box-shadow: 1px 1px 15px 2px rgb(111, 111, 111);
+
+.card.flipped .card-front {
+    transform: rotateY(180deg) rotateZ(50deg);
 }
 
-.msg p {
-    display: flex;
-    padding: 0 10px;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    color: white;
+.card.flipped .card-back {
+    transform: rotateY(0) rotateZ(0);
 }
 
 .win {
-    display: none; /* Initially hidden, displayed only when winning */
     position: absolute;
     top: 0;
     left: 0;
@@ -142,6 +188,7 @@ button.lock {
     height: 100%;
     text-align: center;
     background: #FDF8E6;
+    transform: rotateY(180deg) rotateZ(50deg);
 }
 
 .win-text {
@@ -152,23 +199,31 @@ button.lock {
     font-size: 21pt;
     color: #282A3A;
 }
+
 .highlight {
-    color: #35753b;
+    color: #6f00fc;
 }
 
-/* Responsive styling for smaller screens */
 @media (max-width: 700px) {
+
     .board-container {
         width: 370px;
     } 
 
     .card {
+        position: relative;
         width: 70px;
         height: 70px;
+        cursor: pointer;
     }
 
+
     .card-back {
+        transform: rotateY(180deg) rotateZ(50deg);
         font-size: 20pt;
+        user-select: none;
+        text-align: center;
         line-height: 70px;
+        background: #FDF8E6;
     }
 }

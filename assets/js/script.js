@@ -1,4 +1,3 @@
-//Selectors for accessing vrious parts of the game in the DOM 
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
@@ -6,7 +5,8 @@ const selectors = {
     timer: document.querySelector('.timer'),
     start: document.querySelector('button'),
     win: document.querySelector('.win')
-};
+}
+
 let msg = document.querySelector('.msg');
 let msgText = document.querySelector('.msg p');
 let startBtn = document.querySelector('#btn');
@@ -17,139 +17,156 @@ const state = {
     totalFlips: 0,
     totalTime: 0,
     loop: null
-};
+}
 
-// shuffle to randomize the cards on the board
 const shuffle = array => {
-    const clonedArray = [...array];
+    const clonedArray = [...array]
+
     for (let index = clonedArray.length - 1; index > 0; index--) {
-        const randomIndex = Math.floor(Math.random() * (index + 1));
+        const randomIndex = Math.floor(Math.random() * (index + 1))
+        const original = clonedArray[index]
+
         clonedArray[index] = clonedArray[randomIndex]
         clonedArray[randomIndex] = original
     }
-    return clonedArray;
-};
 
-//Pick random items from an array
+    return clonedArray
+}
+
 const pickRandom = (array, items) => {
-    const clonedArray = [...array];
-    const randomPicks = [];
+    const clonedArray = [...array]
+    const randomPicks = []
+
     for (let index = 0; index < items; index++) {
         const randomIndex = Math.floor(Math.random() * clonedArray.length)
         
         randomPicks.push(clonedArray[randomIndex])
         clonedArray.splice(randomIndex, 1)
     }
-    return randomPicks
-};
 
-//Generate the game board with cards
+    return randomPicks
+}
+
 const generateGame = () => {
     const dimensions = selectors.board.getAttribute('data-dimension')
+
     if (dimensions % 2 !== 0) {
-        throw new Error("The dimension of the board must be an even number.");
-}
+        throw new Error("The dimension of the board must be an even number.")
+    }
+
 // Emoji icons//
 const emojis =['assets/images/camel.png', 'assets/images/cat.png', 'assets/images/corgi.png', 'assets/images/donkey.png','assets/images/elephant.png', 'assets/images/frog.png', 'assets/images/horse.png', 'assets/images/kangaroo.png', 'assets/images/pig.png', 'assets/images/zebra.png'];
-const picks = pickRandom(emojis, (dimensions * dimensions) / 2);
-const items = shuffle([...picks, ...picks]);
+const picks = pickRandom(emojis, (dimensions * dimensions) / 2) 
+const items = shuffle([...picks, ...picks])
 const cards = `
     <div class="board" style="grid-template-columns: repeat(${dimensions}, auto)">
-            ${items.map(item => `
-        <div class="card">
-        <div class="card-front"></div>
-        <div class="card-back">${item}</div>
-    </div>
-`).join('')}
-</div>
+        ${items.map(item => `
+            <div class="card">
+                <div class="card-front"></div>
+                <div class="card-back">${item}</div>
+            </div>
+        `).join('')}
+   </div>
 `
+
 const parser = new DOMParser().parseFromString(cards, 'text/html')
 
 selectors.board.replaceWith(parser.querySelector('.board'))
 }
 
-// Starts the game, initializes timer, and disables start button
 const startGame = () => {
-    state.gameStarted = true
-    selectors.start.classList.add('disabled')
+state.gameStarted = true
+selectors.start.classList.add('disabled')
 
-    startBtn.classList.add("lock");
-    startBtn.innerText = "Started";
-    msg.style.display = "block";
-    msgText.innerHTML = `Game has been Started`;
-    
-    setTimeout(function() { msg.style.display = "none"}, 1500); //time in milliseconds
-    
-    
-    state.loop = setInterval(() => {
-        state.totalTime++;
-        selectors.moves.innerText = `${state.totalFlips} moves`;
-        selectors.timer.innerText = `time: ${state.totalTime} sec`;
-    }, 1000);
-};
+startBtn.classList.add("lock");
+startBtn.innerText = "Started";
+msg.style.display = "block";
+msgText.innerHTML = `Game has been Started`;
 
-// Flip back cards that are not matched
+setTimeout(function() {
+     msg.style.display = "none";
+}, 1500); // <-- time in milliseconds
+
+
+
+
+
+state.loop = setInterval(() => {
+    state.totalTime++
+
+    selectors.moves.innerText = `${state.totalFlips} moves`
+    selectors.timer.innerText = `time: ${state.totalTime} sec`
+}, 1000)
+}
+
 const flipBackCards = () => {
-    document.querySelectorAll('.card:not(.matched)').forEach(card => card.classList.remove('flipped'));
-    state.flippedCards = 0;
-};
+document.querySelectorAll('.card:not(.matched)').forEach(card => {
+    card.classList.remove('flipped')
+})
 
- // Handle card flip action
+state.flippedCards = 0
+}
+
 const flipCard = card => {
-    if (state.flippedCards < 2) {
-        state.flippedCards++;
-        state.totalFlips++;
-        card.classList.add('flipped');
-        if (!state.gameStarted) startGame();
-        if (state.flippedCards === 2) checkForMatch();
+state.flippedCards++
+state.totalFlips++
+
+if (!state.gameStarted) {
+    startGame()
+}
+
+if (state.flippedCards <= 2) {
+    card.classList.add('flipped')
+}
+
+if (state.flippedCards === 2) {
+    const flippedCards = document.querySelectorAll('.flipped:not(.matched)')
+
+    if (flippedCards[0].innerText === flippedCards[1].innerText) {
+        flippedCards[0].classList.add('matched')
+        flippedCards[1].classList.add('matched')
     }
-};
 
-// Check for a match between flipped cards
-const checkForMatch = () => {
-    const flippedCards = document.querySelectorAll('.flipped:not(.matched)');
-    if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
-        flippedCards.forEach(card => card.classList.add('matched'));
+    setTimeout(() => {
+        flipBackCards()
+    }, 1000)
+}
+
+// If there are no more cards that we can flip, we won the game
+if (!document.querySelectorAll('.card:not(.flipped)').length) {
+    setTimeout(() => {
+        selectors.boardContainer.classList.add('flipped')
+        selectors.win.innerHTML = `
+            <span class="win-text">
+                You won!<br />
+                with <span class="highlight">${state.totalFlips}</span> moves<br />
+                under <span class="highlight">${state.totalTime}</span> seconds
+            </span>
+        `
+        startBtn.classList.remove("lock");
+        startBtn.style.color = "white";
+        startBtn.innerText = "Replay";
+        startBtn.addEventListener("click", event => {
+            window.location.reload();
+        })
+
+        clearInterval(state.loop)
+    }, 1000)
+}
+}
+
+const attachEventListeners = () => {
+document.addEventListener('click', event => {
+    const eventTarget = event.target
+    const eventParent = eventTarget.parentElement
+
+    if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
+        flipCard(eventParent)
+    } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
+        startGame()
     }
-    setTimeout(flipBackCards, 1000);
-    checkForWin();
-};
+})
+}
 
-// Check if the player has won the game
-const checkForWin = () => {
-    if (!document.querySelectorAll('.card:not(.flipped)').length) {
-        setTimeout(() => declareWin(), 1000);
-    }
-};
-
-// Declare the win and shows winning message
-const declareWin = () => {
-    selectors.boardContainer.classList.add('flipped');
-    selectors.win.innerHTML = `
-        <span class="win-text">
-            You won!<br />
-            with <span class="highlight">${state.totalFlips}</span> moves<br />
-            under <span class="highlight">${state.totalTime}</span> seconds
-        </span>
-    `;
-    startBtn.classList.remove("lock");
-    startBtn.innerText = "Replay";
-    startBtn.addEventListener("click", () => window.location.reload());
-    clearInterval(state.loop);
-}; 
-
-//event listeners for game interaction
-document.addEventListener('DOMContentLoaded', () => {
-    selectors.board.addEventListener('click', event => {
-        if (event.target.closest('.card') && !event.target.closest('.card').classList.contains('flipped')) {
-            flipCard(event.target.closest('.card'));
-        }
-    });
-    selectors.start.addEventListener('click', () => {
-// Start game when start button is clicked
-        if (!selectors.start.classList.contains('disabled')) {
-            startGame();
-        }
-    });
-    generateGame();
-});
+generateGame()
+attachEventListeners()
