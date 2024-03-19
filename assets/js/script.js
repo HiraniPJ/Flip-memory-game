@@ -115,6 +115,29 @@ const checkForMatch = () => {
     checkForWin();
 };
 
+// Check if the player has won the game
+const checkForWin = () => {
+    if (!document.querySelectorAll('.card:not(.flipped)').length) {
+        setTimeout(() => declareWin(), 1000);
+    }
+};
+
+// Declare the win and shows winning message
+const declareWin = () => {
+    selectors.boardContainer.classList.add('flipped');
+    selectors.win.innerHTML = `
+        <span class="win-text">
+            You won!<br />
+            with <span class="highlight">${state.totalFlips}</span> moves<br />
+            under <span class="highlight">${state.totalTime}</span> seconds
+        </span>
+    `;
+    startBtn.classList.remove("lock");
+    startBtn.innerText = "Replay";
+    startBtn.addEventListener("click", () => window.location.reload());
+    clearInterval(state.loop);
+}; 
+
 //event listeners for game interaction
 document.addEventListener('DOMContentLoaded', () => {
     selectors.board.addEventListener('click', event => {
