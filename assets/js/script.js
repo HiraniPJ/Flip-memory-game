@@ -13,7 +13,7 @@ let startBtn = document.querySelector('#btn');
 
 //Generate the game board with cards
 const generateGame = () => {
-    const dimensions = parseInt(selectors.board.getAttribute('data-dimension'), 10);
+    const dimensions = selectors.board.getAttribute('data-dimension')
     if (dimensions % 2 !== 0) {
         throw new Error("The dimension of the board must be an even number.");
 }
@@ -21,18 +21,20 @@ const generateGame = () => {
 const emojis =['assets/images/camel.png', 'assets/images/cat.png', 'assets/images/corgi.png', 'assets/images/donkey.png','assets/images/elephant.png', 'assets/images/frog.png', 'assets/images/horse.png', 'assets/images/kangaroo.png', 'assets/images/pig.png', 'assets/images/zebra.png'];
 const picks = pickRandom(emojis, (dimensions * dimensions) / 2);
 const items = shuffle([...picks, ...picks]);
-selectors.board.innerHTML = ''; // Clear existing board
-selectors.board.style.gridTemplateColumns = `repeat(${dimensions}, 1fr)`; //Create Grid
-const cards = items.map(item =>`
-    <div class="card">
+const cards = `
+    <div class="board" style="grid-template-columns: repeat(${dimensions}, auto)">
+            ${items.map(item => `
+        <div class="card">
         <div class="card-front"></div>
         <div class="card-back">${item}</div>
     </div>
-`).join('');
-    selectors.board.innerHTML = cards;
-    selectors.board.style.gridTemplateColumns = `repeat(${dimensions}, auto)`;
+`).join('')}
+</div>
+`
+const parser = new DOMParser().parseFromString(cards, 'text/html')
 
-};
+selectors.board.replaceWith(parser.querySelector('.board'))
+}
 
 // shuffle to randomize the cards on the board
 const shuffle = array => {
