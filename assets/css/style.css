@@ -55,3 +55,18 @@ button.lock {
 .disabled {
     color: #ff7878;
 }
+
+/* Game stats (moves and timer) styling */
+.stats {
+    color: #FFF;
+    font-size: 14pt;
+    border: 1px dotted floralwhite;
+    padding: 10px;
+    box-shadow: 5px 3px 15px 1px rgb(0, 139, 35);
+    border-radius: 7px;
+}
+
+.stats .moves, .stats .timer {
+    color: #ffffff;
+}
+
