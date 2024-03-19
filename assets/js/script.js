@@ -105,6 +105,16 @@ const flipCard = card => {
     }
 };
 
+// Check for a match between flipped cards
+const checkForMatch = () => {
+    const flippedCards = document.querySelectorAll('.flipped:not(.matched)');
+    if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
+        flippedCards.forEach(card => card.classList.add('matched'));
+    }
+    setTimeout(flipBackCards, 1000);
+    checkForWin();
+};
+
 //event listeners for game interaction
 document.addEventListener('DOMContentLoaded', () => {
     selectors.board.addEventListener('click', event => {
