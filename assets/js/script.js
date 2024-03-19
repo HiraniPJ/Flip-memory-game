@@ -61,11 +61,17 @@ const pickRandom = (array, items) => {
 
 // Starts the game, initializes timer, and disables start button
 const startGame = () => {
-    state.gameStarted = true;
-    selectors.start.classList.add('disabled');
+    state.gameStarted = true
+    selectors.start.classList.add('disabled')
+
+    startBtn.classList.add("lock");
+    startBtn.innerText = "Started";
     msg.style.display = "block";
-    msgText.innerHTML = "Game has been Started";
-    setTimeout(() => msg.style.display = "none", 1500);
+    msgText.innerHTML = `Game has been Started`;
+    
+    setTimeout(function() { msg.style.display = "none"}, 1500); //time in milliseconds
+    
+    
     state.loop = setInterval(() => {
         state.totalTime++;
         selectors.moves.innerText = `${state.totalFlips} moves`;
