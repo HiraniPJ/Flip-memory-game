@@ -4,14 +4,12 @@ html {
     height: 100%;
     background: linear-gradient(325deg,  #469735 0%,#59b451 50%,#068622e3 100%);
     /* background: linear-gradient(325deg,  #1c1b1c 0%,#718500 50%,#f55454 100%); */
-
-    font-family: Fredoka;
 }
 
 .msg {
 
     display: none;
-    background-color: #5b2968;
+    background-color: #120914;
     width: auto;
     border-radius: 5px;
     padding: 5px;
@@ -41,6 +39,7 @@ html {
     gap: 20px;
     margin-bottom: 20px;
 }
+
 
 .footer {
     padding-top: 10px;
@@ -112,7 +111,10 @@ button.lock{
  margin-right: 10px;
 }
 
-
+.card-image{
+    width: 80%;
+    height: 80%;
+}
 
 
 .board-container {

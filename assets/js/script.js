@@ -63,7 +63,7 @@ const cards = `
         ${items.map(item => `
             <div class="card">
                 <div class="card-front"></div>
-                <div class="card-back">${item}</div>
+                <div class="card-back"><img src="${item}" alt="Memory card image" class ="card-image"></div>
             </div>
         `).join('')}
    </div>
@@ -122,7 +122,7 @@ if (state.flippedCards <= 2) {
 if (state.flippedCards === 2) {
     const flippedCards = document.querySelectorAll('.flipped:not(.matched)')
 
-    if (flippedCards[0].innerText === flippedCards[1].innerText) {
+    if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
         flippedCards[0].classList.add('matched')
         flippedCards[1].classList.add('matched')
     }
