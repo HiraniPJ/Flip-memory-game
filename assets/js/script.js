@@ -4,10 +4,12 @@ const selectors = {
     board: document.querySelector('.board'),
     moves: document.querySelector('.moves'),
     timer: document.querySelector('.timer'),
-    start: document.querySelector('#btn'),
+    start: document.querySelector('button'),
     win: document.querySelector('.win')
 };
-
+let msg = document.querySelector('.msg');
+let msgText = document.querySelector('.msg p');
+let startBtn = document.querySelector('#btn');
 
 //Generate the game board with cards
 const generateGame = () => {
@@ -37,7 +39,8 @@ const shuffle = array => {
     const clonedArray = [...array];
     for (let index = clonedArray.length - 1; index > 0; index--) {
         const randomIndex = Math.floor(Math.random() * (index + 1));
-        [clonedArray[index], clonedArray[randomIndex]] = [clonedArray[randomIndex], clonedArray[index]];
+        clonedArray[index] = clonedArray[randomIndex]
+        clonedArray[randomIndex] = original
     }
     return clonedArray;
 };
