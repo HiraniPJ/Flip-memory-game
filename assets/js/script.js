@@ -1,3 +1,14 @@
+//Selectors for accessing vrious parts of the game in the DOM 
+const selectors = {
+    boardContainer: document.querySelector('.board-container'),
+    board: document.querySelector('.board'),
+    moves: document.querySelector('.moves'),
+    timer: document.querySelector('.timer'),
+    start: document.querySelector('#btn'),
+    win: document.querySelector('.win')
+};
+
+
 //Generate the game board with cards
 const generateGame = () => {
     const dimensions = parseInt(selectors.board.getAttribute('data-dimension'), 10);
@@ -6,5 +17,13 @@ const generateGame = () => {
 }
 // Emoji icons//
 const emojis =['assets/images/camel.png', 'assets/images/cat.png', 'assets/images/corgi.png', 'assets/images/donkey.png','assets/images/elephant.png', 'assets/images/frog.png', 'assets/images/horse.png', 'assets/images/kangaroo.png', 'assets/images/pig.png', 'assets/images/zebra.png'];
+const cards = items.map(item =>`
+    <div class="card">
+        <div class="card-front"></div>
+        <div class="card-back">${item}</div>
+    </div>
+`).join('');
+    selectors.board.innerHTML = cards;
+    selectors.board.style.gridTemplateColumns = `repeat(${dimensions}, auto)`;
 
 };
