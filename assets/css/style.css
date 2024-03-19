@@ -41,6 +41,10 @@ button, .myBTN {
     box-shadow: 5px 3px 15px 1px rgb(0, 139, 35);
     transition: all 0.5s;
 }
+button:hover {
+    color: #f3d634;
+    background-color: #3e415a;
+}
 
 button.lock {
     pointer-events: none;
