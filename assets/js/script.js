@@ -28,6 +28,20 @@ const cards = items.map(item =>`
 
 };
 
+// Starts the game, initializes timer, and disables start button
+const startGame = () => {
+    state.gameStarted = true;
+    selectors.start.classList.add('disabled');
+    msg.style.display = "block";
+    msgText.innerHTML = "Game has been Started";
+    setTimeout(() => msg.style.display = "none", 1500);
+    state.loop = setInterval(() => {
+        state.totalTime++;
+        selectors.moves.innerText = `${state.totalFlips} moves`;
+        selectors.timer.innerText = `time: ${state.totalTime} sec`;
+    }, 1000);
+};
+
 //event listeners for game interaction
 document.addEventListener('DOMContentLoaded', () => {
     selectors.board.addEventListener('click', event => {
