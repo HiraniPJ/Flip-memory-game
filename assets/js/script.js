@@ -94,6 +94,16 @@ const flipBackCards = () => {
     state.flippedCards = 0;
 };
 
+ // Handle card flip action
+const flipCard = card => {
+    if (state.flippedCards < 2) {
+        state.flippedCards++;
+        state.totalFlips++;
+        card.classList.add('flipped');
+        if (!state.gameStarted) startGame();
+        if (state.flippedCards === 2) checkForMatch();
+    }
+};
 
 //event listeners for game interaction
 document.addEventListener('DOMContentLoaded', () => {
