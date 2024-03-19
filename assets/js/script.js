@@ -27,3 +27,19 @@ const cards = items.map(item =>`
     selectors.board.style.gridTemplateColumns = `repeat(${dimensions}, auto)`;
 
 };
+
+//event listeners for game interaction
+document.addEventListener('DOMContentLoaded', () => {
+    selectors.board.addEventListener('click', event => {
+        if (event.target.closest('.card') && !event.target.closest('.card').classList.contains('flipped')) {
+            flipCard(event.target.closest('.card'));
+        }
+    });
+    selectors.start.addEventListener('click', () => {
+// Start game when start button is clicked
+        if (!selectors.start.classList.contains('disabled')) {
+            startGame();
+        }
+    });
+    generateGame();
+});
