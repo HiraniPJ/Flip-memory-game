@@ -17,6 +17,8 @@ const generateGame = () => {
 }
 // Emoji icons//
 const emojis =['assets/images/camel.png', 'assets/images/cat.png', 'assets/images/corgi.png', 'assets/images/donkey.png','assets/images/elephant.png', 'assets/images/frog.png', 'assets/images/horse.png', 'assets/images/kangaroo.png', 'assets/images/pig.png', 'assets/images/zebra.png'];
+const picks = pickRandom(emojis, (dimensions * dimensions) / 2);
+const items = shuffle([...picks, ...picks]);
 const cards = items.map(item =>`
     <div class="card">
         <div class="card-front"></div>
@@ -27,6 +29,18 @@ const cards = items.map(item =>`
     selectors.board.style.gridTemplateColumns = `repeat(${dimensions}, auto)`;
 
 };
+
+// shuffle to randomize the cards on the board
+const shuffle = array => {
+    const clonedArray = [...array];
+    for (let index = clonedArray.length - 1; index > 0; index--) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [clonedArray[index], clonedArray[randomIndex]] = [clonedArray[randomIndex], clonedArray[index]];
+    }
+    return clonedArray;
+};
+//Pick random items
+
 
 // Starts the game, initializes timer, and disables start button
 const startGame = () => {
