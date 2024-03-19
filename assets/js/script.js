@@ -19,6 +19,8 @@ const generateGame = () => {
 const emojis =['assets/images/camel.png', 'assets/images/cat.png', 'assets/images/corgi.png', 'assets/images/donkey.png','assets/images/elephant.png', 'assets/images/frog.png', 'assets/images/horse.png', 'assets/images/kangaroo.png', 'assets/images/pig.png', 'assets/images/zebra.png'];
 const picks = pickRandom(emojis, (dimensions * dimensions) / 2);
 const items = shuffle([...picks, ...picks]);
+selectors.board.innerHTML = ''; // Clear existing board
+selectors.board.style.gridTemplateColumns = `repeat(${dimensions}, 1fr)`; //Create Grid
 const cards = items.map(item =>`
     <div class="card">
         <div class="card-front"></div>
