@@ -39,8 +39,16 @@ const shuffle = array => {
     }
     return clonedArray;
 };
-//Pick random items
-
+//Pick random items from an array
+const pickRandom = (array, items) => {
+    const clonedArray = [...array];
+    const randomPicks = [];
+    for (let index = 0; index < items; index++) {
+        const randomIndex = Math.floor(Math.random() * clonedArray.length);
+        randomPicks.push(clonedArray.splice(randomIndex, 1)[0]);
+    }
+    return randomPicks;
+};
 
 // Starts the game, initializes timer, and disables start button
 const startGame = () => {
