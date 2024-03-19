@@ -50,3 +50,8 @@ button.lock {
     pointer-events: none;
     background-color: #4d4c4c;
 }
+
+/* Styling for disabled elements */
+.disabled {
+    color: #ff7878;
+}
