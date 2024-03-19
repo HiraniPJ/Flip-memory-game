@@ -11,6 +11,14 @@ let msg = document.querySelector('.msg');
 let msgText = document.querySelector('.msg p');
 let startBtn = document.querySelector('#btn');
 
+const state = {
+    gameStarted: false,
+    flippedCards: 0,
+    totalFlips: 0,
+    totalTime: 0,
+    loop: null
+}
+
 //Generate the game board with cards
 const generateGame = () => {
     const dimensions = selectors.board.getAttribute('data-dimension')
