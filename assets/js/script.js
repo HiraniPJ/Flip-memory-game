@@ -13,6 +13,7 @@ let msg = document.querySelector('.msg');
 let msgText = document.querySelector('.msg p');
 let startBtn = document.querySelector('#btn');
 
+//state: centralized game state to manage game status, sores and timing
 const state = {
     gameStarted: false,
     gameEnded: false,
@@ -21,7 +22,7 @@ const state = {
     totalTime: 0,
     loop: null
 };
-
+//shuffle: randomize array elements used for shuffling
 const shuffle = array => {
     const clonedArray = [...array];
 
@@ -35,7 +36,7 @@ const shuffle = array => {
 
     return clonedArray;
 };
-
+//PickRandom: selecets a randosm subset of elements from an array, use dto select a random set of cards
 const pickRandom = (array, items) => {
     const clonedArray = [...array];
     const randomPicks = [];
@@ -49,10 +50,12 @@ const pickRandom = (array, items) => {
 
     return randomPicks;
 };
-
+//GenerateGame: Initializes the game board with shuffled cards
 const generateGame = () => {
-    const dimensions = selectors.board.getAttribute('data-dimension');
 
+//validates board dimensions and prepares with game baord HTML
+    const dimensions = selectors.board.getAttribute('data-dimension');
+//Ensures an even number of cards for pairing
     if (dimensions % 2 !== 0) {
         throw new Error("The dimension of the board must be an even number.");
     }
@@ -61,6 +64,8 @@ const generateGame = () => {
 const emojis =['assets/images/camel.png', 'assets/images/cat.png', 'assets/images/corgi.png', 'assets/images/donkey.png','assets/images/elephant.png', 'assets/images/frog.png', 'assets/images/horse.png', 'assets/images/kangaroo.png', 'assets/images/pig.png', 'assets/images/zebra.png'];
 const picks = pickRandom(emojis, (dimensions * dimensions) / 2); 
 const items = shuffle([...picks, ...picks]);
+
+// Generate card HTML and replace existing board
 const cards = `
     <div class="board" style="grid-template-columns: repeat(${dimensions}, auto)">
         ${items.map(item => `
@@ -91,7 +96,7 @@ setTimeout(function() {
      msg.style.display = "none";
 }, 4000); // <-- time in milliseconds
 
-
+//setup game timer
 state.loop = setInterval(() => {
     state.totalTime++;
 
@@ -103,7 +108,7 @@ state.loop = setInterval(() => {
     setTimeout(stopTimer, 40000); // 40 seconds in milliseconds
 };
 
-//stop timer 
+//stop timer: stope the game timer and triggers the end-of-game logic
 const stopTimer = () => {
     clearInterval(state.loop);
     state.gameEnded = true;
@@ -115,7 +120,7 @@ const stopTimer = () => {
 
 };
 
-// reset game
+// reset game: resets game to initial state, clearing any game data and UI chnages
 const resetGame = () => {
     clearInterval(state.loop);
     state.gameStarted = false;
@@ -140,33 +145,35 @@ const flipBackCards = () => {
 document.querySelectorAll('.card:not(.matched)').forEach(card => {
     card.classList.remove('flipped');
 });
-
-state.flippedCards = 0;
+    state.flippedCards = 0;
 };
 
-
+// FlipCard: Handles the logic for flipping a card and checking for matches
 const flipCard = card => {
     if (state.gameEnded){return;}
 
+   
+// Increment counters for flipped cards and total flips
 state.flippedCards++;
 state.totalFlips++;
 
 if (!state.gameStarted) {
     startGame();
 }
-
+// Allow flipping if there are less than 2 cards flipped in this turn
 if (state.flippedCards <= 2) {
     card.classList.add('flipped');
 }
-
+// Check for a match if 2 cards are flipped
 if (state.flippedCards === 2) {
     const flippedCards = document.querySelectorAll('.flipped:not(.matched)');
 
+// Check if the two flipped cards match
     if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
         flippedCards[0].classList.add('matched');
         flippedCards[1].classList.add('matched');
     }
-
+// Regardless of a match, flip the cards back after a short delay
     setTimeout(() => {
         flipBackCards();
     }, 1000);
@@ -201,7 +208,7 @@ const attachEventListeners = () => {
 document.addEventListener('click', event => {
     const eventTarget = event.target;
     const eventParent = eventTarget.parentElement;
-
+// Start or restart the game based on the button's current state
     if (eventTarget.id === 'btn') { 
         if (eventTarget.innerText === "Restart") {
             resetGame();
@@ -210,11 +217,12 @@ document.addEventListener('click', event => {
         (!eventTarget.classList.contains('disabled')) {
         startGame();
     }
+    // Flip a card if it's clicked and the game has not ended
     } else if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped') && !state.gameEnded) {
         flipCard(eventParent);
     }
 });
 };
-
+//Initial game setup
 generateGame();
 attachEventListeners();
