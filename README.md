@@ -104,7 +104,12 @@ W3C CSS validator
 <img src="assets/readmeImages/w3 css validation test.png" alt="css validator">
 
 JShint javascript validator
-<img src="assets/readmeImages/JShint.JPG.png" alt="JShint">
+   <ul>
+   <li>There are 18 functions in this file.</li>
+    <li>Function with the largest signature take 2 arguments, while the median is 0.</li>
+    <li>Largest function has 16 statements in it, while the median is 5.</li>
+    <li>The most complex function has a cyclomatic complexity value of 7 while the median is 1.</li>
+    </ul>
 
 
 
@@ -136,3 +141,12 @@ JShint javascript validator
 <li>On GitHub.com, navigate to the HiraniPJ/lip-memory-game repository.</li>
 <li>Above the list of files, click the button that says 'Gitpod'.</li>
 <li>This will open a new Gitpod workspace with your cloned repository ready to use.</li>
+
+<h1>Credits</h1>
+
+<h2>content</h2>
+<ul>
+<li>HTML, CSS and Javascript code help was taken from w3schools - <a href = "https://www.w3schools.com/js/default.asp"></a></li>
+<li>Found some helpful guidannce of alot of codes from stack overflow - <a href ="https://stackoverflow.design/product/guidelines/javascript/"></a></li>
+<li>I got alot of guidance from youtube video tutorials <a href = "https://www.youtube.com/watch?v=M5GBvIioUTY"></a> </li>
+<li></li>
