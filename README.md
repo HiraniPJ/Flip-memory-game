@@ -6,73 +6,73 @@
 <h2>Selectors and Global Variables</h2>
 
 const selectors = { ... };
-let msg = document.querySelector('.msg');
-let msgText = document.querySelector('.msg p');
-let startBtn = document.querySelector('#btn');
+let msg = document.querySelector('.msg');<br>
+let msgText = document.querySelector('.msg p');<br>
+let startBtn = document.querySelector('#btn');<br>
 
 <p><b>Purpose:</b> These selectors cache important DOM elements for easy access throughout the script. Caching improves performance by reducing the need to repeatedly query the DOM for these elements. The `msg` and `msgText` are used for displaying messages to the player, while `startBtn` is the game's start/restart button.</p>
 
 <h2>State Object</h2>
 
-const state = { ... };
+const state = { ... };<br>
 
 <p><b>Purpose:</b> The `state` object centralizes the game's state, tracking whether the game has started or ended, the number of cards currently flipped, total flips made, total time elapsed, and the timer's loop. This design pattern helps manage the game's status and facilitates updates to the game's UI based on state changes.</p>
 
 <h2>Utility Functions: `shuffle` and `pickRandom`</h2>
 
-const shuffle = array => { ... };
-const pickRandom = (array, items) => { ... };
+const shuffle = array => { ... };<br>
+const pickRandom = (array, items) => { ... };<br>
 
 <p><b>Purpose:</b> These functions enhance the game's randomness and replayability. `shuffle` randomly shuffles the cards each game, ensuring a unique experience. `pickRandom` selects a subset of cards to use in the game, allowing for varied card sets in different game sessions.</p>
 
 <h2>Game Initialization: `generateGame`</h2>
 
-const generateGame = () => { ... };
+const generateGame = () => { ... };<br>
 
 <p><b>Purpose:</b> Initializes the game board with shuffled cards. This function dynamically creates the card elements based on the selected card set and arranges them in a grid. It ensures the game board is ready and populated with cards at the start of each game.</p>
 
 <h2>Game Control Functions: `startGame` and `stopTimer`</h2>
 
-const startGame = () => { ... };
-const stopTimer = () => { ... };
+const startGame = () => { ... };<br>
+const stopTimer = () => { ... };<br>
 
 <p><b>Purpose:</b> `startGame` sets up the game to start or restart, including disabling the start button and setting up a timer to track the game duration. `stopTimer` stops the game timer and handles the end-of-game logic, such as displaying the "time's up" message and enabling the restart option.</p>
 
 <h2>Gameplay Logic: `flipCard` and `flipBackCards`</h2>
 
-const flipCard = card => { ... };
-const flipBackCards = () => { ... };
+const flipCard = card => { ... };<br>
+const flipBackCards = () => { ... };<br>
 
 <p><b>Purpose:</b>`flipCard` manages the core gameplay mechanic of flipping cards and checking for matches. It ensures players can only flip two cards at a time and checks for matches among flipped cards. `flipBackCards` flips non-matched cards back to their default state, allowing the player to try again.</p>
 
 <h2>Event Listeners: `attachEventListeners`</h2>
 
-const attachEventListeners = () => { ... };
+const attachEventListeners = () => { ... };<br>
 
 <p><b>Purpose:</b>Sets up the event listeners for the game, handling card clicks and start/restart button clicks. This function is crucial for interactive gameplay, enabling players to interact with the game by flipping cards and starting new games.</p>
 
 <h2>Initialization Call</h2>
 
-generateGame();
-attachEventListeners();
+generateGame();<br>
+attachEventListeners();<br>
 
 <p><b>Purpose:</b>These calls initialize the game board and set up the necessary event listeners when the script loads. This ensures the game is ready for the player to start playing immediately upon loading the page.</p>
 
 <h2>Reset Game Logic</h2>
 
-const resetGame = () => { ... };
+const resetGame = () => { ... };<br>
 
 <p><b>Purpose:</b>Resets the game to its initial state. This function is critical for enabling players to start a new game after finishing one. It resets the game's state (`state` object), clears the game board of any flipped or matched cards, and prepares the start/restart button for a new game session. This ensures a fresh start without needing to reload the page.</p>
 
 <h2>Game-Ending Condition Check</h2>
 
-if (!document.querySelectorAll('.card:not(.flipped)').length) { ... }
+if (!document.querySelectorAll('.card:not(.flipped)').length) { ... }<br>
 
 <p><b>Purpose:</b>This checks if all cards on the board have been flipped and matched, indicating the player has successfully found all pairs. When this condition is met, the game displays a winning message and provides options for restarting the game. It’s a crucial part of the game’s flow, marking the transition from gameplay to completion.</p>
 
 <h2>Handling of Start/Restart Button Clicks:</h2>
 
-if (eventTarget.id === 'btn') { ... }
+if (eventTarget.id === 'btn') { ... }<br>
 
 <p>In the `attachEventListeners` function, there's logic to handle clicks on the start/restart button differently based on the game's state:</p>
 
