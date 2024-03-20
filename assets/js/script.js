@@ -106,6 +106,7 @@ state.loop = setInterval(() => {
 //stop timer 
 const stopTimer = () => {
     clearInterval(state.loop);
+    state.gameEnded = true;
     msg.style.display = "block";
     msgText.innerHTML = `Your Time's Up!`;
     selectors.start.classList.remove("lock");
@@ -113,6 +114,27 @@ const stopTimer = () => {
     selectors.start.innerText = "Restart";
 
 };
+
+// reset game
+const resetGame = () => {
+    clearInterval(state.loop);
+    state.gameStarted = false;
+    state.gameEnded = false;
+    state.flippedCards = 0;
+    state.totalFlips = 0;
+    state.totalTime = 0;
+    selectors.moves.innerHTML = '0 moves';
+    selectors.timer.innerText = 'time: 0 sec';
+    selectors.start.classList.remove('disabled', 'lock');
+    selectors.start.innerText = 'Start';
+    msg.style.display = 'none';
+
+    document.querySelectorAll ('.card').forEach(card => {
+        card.classList.remove('flipped', 'matched');
+    });
+};
+
+
 //flip card logic
 const flipBackCards = () => {
 document.querySelectorAll('.card:not(.matched)').forEach(card => {
@@ -174,16 +196,22 @@ if (!document.querySelectorAll('.card:not(.flipped)').length) {
 };
 
 
-
+//event listeners for start and reset
 const attachEventListeners = () => {
 document.addEventListener('click', event => {
     const eventTarget = event.target;
     const eventParent = eventTarget.parentElement;
 
-    if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
-        flipCard(eventParent);
-    } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
+    if (eventTarget.id === 'btn') { 
+        if (eventTarget.innerText === "Restart") {
+            resetGame();
+
+        } else if 
+        (!eventTarget.classList.contains('disabled')) {
         startGame();
+    }
+    } else if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped') && !state.gameEnded) {
+        flipCard(eventParent);
     }
 });
 };
