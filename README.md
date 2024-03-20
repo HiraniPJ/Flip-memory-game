@@ -1,6 +1,10 @@
-<h1><b>Animal Flip Card Memory Game</h1>
+<h1><b>Animal Flip Card Memory Game</h1
+
 <h2>Description</h2>
 <p>Animal Flip Card Memory Game is a fun and engaging way to test your memory skills! This interactive game challenges players to match pairs of cards featuring adorable animals. Designed with JavaScript, it offers a smooth and enjoyable experience for both kids and adults. Perfect for improving concentration and memory through play.</p>
+
+
+<img src="assets/readmeImages/MOCKUP.JPG" alt="mockup">
 
 <h2>Objective</h2>
 <p>The goal of the game is to find all matching pairs of animal cards with the fewest flips possible. Improve your memory and have fun learning about different animals.</p>
@@ -35,12 +39,6 @@
 <li>Try to remember the positions of the cards that have been revealed to minimize your moves.</li>
 <li>Speed is essential, but being too hasty can lead to mistakes. Balance your speed with careful consideration.</li>
 </ul>
-
-
-
-
-
-
 
 <h1>Script Breakdown</h1>
 <h2>Selectors and Global Variables</h2>
@@ -118,8 +116,11 @@ if (eventTarget.id === 'btn') { ... }<br>
 
 <p><b>Purpose:</b>Differentiates between starting a new game and restarting an ongoing or completed game. It ensures the appropriate action is taken, whether initializing the game state for first-time players or resetting it for players wishing to play again. This responsiveness enhances the user experience by making the game more interactive and accessible.</p>
 
-
-
+<img src="assets/readmeImages/game started.JPG" alt="start game">
+<img src="assets/readmeImages/Time&apos;s up.JPG" alt="game over">
+<img src="assets/readmeImages/match the cards.JPG" alt="matched">
+<img src="assets/readmeImages/un matched cards.JPG" alt="unmatched">
+<img src="assets/readmeImages/win game.JPG" alt="win game">
 
 
 <h2>Usage</h2>
@@ -190,4 +191,4 @@ JShint javascript validator
 <li>HTML, CSS and Javascript code help was taken from w3schools - <a href = "https://www.w3schools.com/js/default.asp"></a></li>
 <li>Found some helpful guidannce of alot of codes from stack overflow - <a href ="https://stackoverflow.design/product/guidelines/javascript/"></a></li>
 <li>I got alot of guidance from youtube video tutorials <a href = "https://www.youtube.com/watch?v=M5GBvIioUTY"></a> </li>
-<li></li>
+<li>all the icons are from  <a href = "https://icons8.com/icon/set/animals/3d-fluency"></a> </li>
