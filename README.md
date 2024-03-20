@@ -1,110 +1,89 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1><b>Animal Flip Card Memory Game<h1>
+<h2>Description</h2>
+<p>Animal Flip Card Memory Game is a fun and engaging way to test your memory skills! This interactive game challenges players to match pairs of cards featuring adorable animals. Designed with JavaScript, it offers a smooth and enjoyable experience for both kids and adults. Perfect for improving concentration and memory through play.</p>
 
-Welcome USER_NAME,
+<h1>Script Breakdown</h1>
+<h2>Selectors and Global Variables</h2>
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+<p><b>Purpose:</b> These selectors cache important DOM elements for easy access throughout the script. Caching improves performance by reducing the need to repeatedly query the DOM for these elements. The `msg` and `msgText` are used for displaying messages to the player, while `startBtn` is the game's start/restart button.</p>
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+<h2>State Object</h2>
 
-## Gitpod Reminders
+<p><b>Purpose:</b> The `state` object centralizes the game's state, tracking whether the game has started or ended, the number of cards currently flipped, total flips made, total time elapsed, and the timer's loop. This design pattern helps manage the game's status and facilitates updates to the game's UI based on state changes.</p>
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+<h2>Utility Functions: `shuffle` and `pickRandom`</h2>
 
-`python3 -m http.server`
+<p><b>Purpose:</b> These functions enhance the game's randomness and replayability. `shuffle` randomly shuffles the cards each game, ensuring a unique experience. `pickRandom` selects a subset of cards to use in the game, allowing for varied card sets in different game sessions.</p>
 
-A blue button should appear to click: _Make Public_,
+<h2>Game Initialization: `generateGame`</h2>
 
-Another blue button should appear to click: _Open Browser_.
+<p><b>Purpose:</b> Initializes the game board with shuffled cards. This function dynamically creates the card elements based on the selected card set and arranges them in a grid. It ensures the game board is ready and populated with cards at the start of each game.</p>
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+<h2>Game Control Functions: `startGame` and `stopTimer`</h2>
 
-A blue button should appear to click: _Make Public_,
+<p><b>Purpose:</b> `startGame` sets up the game to start or restart, including disabling the start button and setting up a timer to track the game duration. `stopTimer` stops the game timer and handles the end-of-game logic, such as displaying the "time's up" message and enabling the restart option.</p>
 
-Another blue button should appear to click: _Open Browser_.
+<h2>Gameplay Logic: `flipCard` and `flipBackCards`</h2>
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+<p><b>Purpose:</b>`flipCard` manages the core gameplay mechanic of flipping cards and checking for matches. It ensures players can only flip two cards at a time and checks for matches among flipped cards. `flipBackCards` flips non-matched cards back to their default state, allowing the player to try again.</p>
 
-To log into the Heroku toolbelt CLI:
+<h2>Event Listeners: `attachEventListeners`</h2>
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+<p><b>Purpose:</b>Sets up the event listeners for the game, handling card clicks and start/restart button clicks. This function is crucial for interactive gameplay, enabling players to interact with the game by flipping cards and starting new games.</p>
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+<h2>Initialization Call</h2>
 
-------
+<p><b>Purpose:</b>These calls initialize the game board and set up the necessary event listeners when the script loads. This ensures the game is ready for the player to start playing immediately upon loading the page.</p>
 
-## Release History
+<h2>Reset Game Logic</h2>
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+<p><b>Purpose:</b>Resets the game to its initial state. This function is critical for enabling players to start a new game after finishing one. It resets the game's state (`state` object), clears the game board of any flipped or matched cards, and prepares the start/restart button for a new game session. This ensures a fresh start without needing to reload the page.</p>
 
-**September 20 2023:** Update Python version to 3.9.17.
+<h2>Game-Ending Condition Check</h2>
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+<p><b>Purpose:</b>This checks if all cards on the board have been flipped and matched, indicating the player has successfully found all pairs. When this condition is met, the game displays a winning message and provides options for restarting the game. It’s a crucial part of the game’s flow, marking the transition from gameplay to completion.</p>
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+<h2>Handling of Start/Restart Button Clicks:</h2>
+<p>In the `attachEventListeners` function, there's logic to handle clicks on the start/restart button differently based on the game's state:</p>
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+<p><b>Purpose:</b>Differentiates between starting a new game and restarting an ongoing or completed game. It ensures the appropriate action is taken, whether initializing the game state for first-time players or resetting it for players wishing to play again. This responsiveness enhances the user experience by making the game more interactive and accessible.</p>
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+<h2>Usage</h2>
+<p>To play the game, open index.html in your web browser. Click on two cards to flip them over. The goal is to find all pairs of matching animals with the fewest flips possible.</p>
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+<h2> <h2></h2> <h2></h2> <h2></h2>
+<h3></h3>
+<h3></h3>
+<h3></h3>
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+<p></p>
+<p></p>
+<h1>Deployment</h1>
+<h2>Cloning & Forking</h2>
+<h3>Fork</h3>
+<ol type="1.">
+<li>On GitHub.com, navigate to the HiraniPJ/Flip-memory-game repository.</li>
+<li>In the top-right corner of the page, click Fork.</li>
+<li>By default, forks are named the same as their parent repositories. You can change the name of the fork to distinguish it further.</li>
+<li>Add a description to your fork to indicate that this is your personal copy or a place where you're planning to propose changes.</li>
+<li>Click Create fork.</li>
+<h3>Clone</h3>
+<ol type="1.">
+<li>Above the list of files, click the button that says 'Code'.</li>
+<li>Copy the URL for the repository.</li>
+<li>Open Terminal. Change the directory to the location where you want the cloned directory.</li>
+<li>Type git clone, and then paste the URL you copied earlier.</li>
+<li>Press Enter.</li>
+<h3>Local Deployment</h3>
+<ol type="1.">
+<li>Sign up to Gitpod or any other online IDE that suits your development needs.</li>
+<li>Download the Gitpod browser extension for easy access.</li>
+<li>On GitHub.com, navigate to the HiraniPJ/dreamdesign repository.</li>
+<li>Above the list of files, click the button that says 'Gitpod'.</li>
+<li>This will open a new Gitpod workspace with your cloned repository ready to use.</li>
