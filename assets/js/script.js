@@ -88,7 +88,7 @@ msgText.innerHTML = `Game has been Started`;
 
 setTimeout(function() {
      msg.style.display = "none";
-}, 1500); // <-- time in milliseconds
+}, 4000); // <-- time in milliseconds
 
 
 state.loop = setInterval(() => {
@@ -98,9 +98,11 @@ state.loop = setInterval(() => {
     selectors.timer.innerText = `time: ${state.totalTime} sec`;
 }, 1000);
 
-//stop the timer after 30 seconds
-    setTimeout(stopTimer, 30000); // 30 seconds in milliseconds
+//stop the timer after 40 seconds
+    setTimeout(stopTimer, 40000); // 40 seconds in milliseconds
 };
+
+//stop timer 
 const stopTimer = () => {
     clearInterval(state.loop);
     msg.style.display = "block";
@@ -110,7 +112,7 @@ const stopTimer = () => {
     selectors.start.innerText = "Restart";
 
 };
-
+//flip card logic
 const flipBackCards = () => {
 document.querySelectorAll('.card:not(.matched)').forEach(card => {
     card.classList.remove('flipped');
@@ -119,6 +121,7 @@ document.querySelectorAll('.card:not(.matched)').forEach(card => {
 state.flippedCards = 0;
 };
 
+
 const flipCard = card => {
 state.flippedCards++;
 state.totalFlips++;
@@ -126,6 +129,8 @@ state.totalFlips++;
 if (!state.gameStarted) {
     startGame();
 }
+
+if (state.gameEnded){return;}
 
 if (state.flippedCards <= 2) {
     card.classList.add('flipped');
@@ -166,6 +171,8 @@ if (!document.querySelectorAll('.card:not(.flipped)').length) {
     }, 1000);
 }
 };
+
+
 
 const attachEventListeners = () => {
 document.addEventListener('click', event => {
