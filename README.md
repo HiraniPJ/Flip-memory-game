@@ -2,6 +2,46 @@
 <h2>Description</h2>
 <p>Animal Flip Card Memory Game is a fun and engaging way to test your memory skills! This interactive game challenges players to match pairs of cards featuring adorable animals. Designed with JavaScript, it offers a smooth and enjoyable experience for both kids and adults. Perfect for improving concentration and memory through play.</p>
 
+<h2>Objective</h2>
+<p>The goal of the game is to find all matching pairs of animal cards with the fewest flips possible. Improve your memory and have fun learning about different animals.</p>
+ 
+ <h2>Features</h2>
+<ul>
+<li>Simple Game Board: 16 cards placed in a 4x4 grid.</li>
+<li>Timer: A 40-second countdown timer. The game board will be disabled if not all cards are matched within this time.</li>
+<li>Reset Button: Allows the player to start a new game at any time, with the cards automatically shuffled.</li>
+<li>Automatic Shuffling: Cards are shuffled at the start of each new game and upon reset.</li>
+<li>Move Counter: Tracks the number of moves made to finish the game.</li>
+<li>Winning Score Display: A special display box shows your score upon winning.</li>
+</ul>
+
+<h2>How to Play</h2>
+<ol type="1.">
+<li>Start the Game: Upon loading the game, the 16 animal cards will be shuffled and placed face down.</li>
+<li>Flip Cards: Click on a card to flip it over. Then, flip another card trying to find its matching pair.</li>
+<li>Match or Miss:
+<li>If the two flipped cards match, they will remain open.</li>
+<li>If they don't match, both cards will flip back over. Remember their positions to make matching easier on future attempts.</li>
+</li>
+<li>Keep an Eye on the Timer: You have 40 seconds to match all pairs. The game ends if the timer runs out before all pairs are matched.</li>
+<li>Use the Reset Button: If you wish to start over or improve your score, click the reset button to shuffle the cards and restart the timer.</li>
+</ol>
+
+<h2>Winning the Game<h2>
+<p>Match all pairs of cards before the timer runs out. Your moves will be counted, and upon winning, a score display box will appear showing how many moves it took to finish the game. Try to beat your own high score by completing the game in fewer moves!</p>
+
+<h2>Tips for Success<h2>
+<ul>
+<li>Try to remember the positions of the cards that have been revealed to minimize your moves.</li>
+<li>Speed is essential, but being too hasty can lead to mistakes. Balance your speed with careful consideration.</li>
+</ul>
+
+
+
+
+
+
+
 <h1>Script Breakdown</h1>
 <h2>Selectors and Global Variables</h2>
 
@@ -111,6 +151,7 @@ JShint javascript validator
     <li>The most complex function has a cyclomatic complexity value of 7 while the median is 1.</li>
     </ul>
 
+<h2></h2>
 
 
 <p></p>
