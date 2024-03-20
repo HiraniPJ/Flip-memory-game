@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
