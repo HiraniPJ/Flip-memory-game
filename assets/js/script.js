@@ -15,6 +15,7 @@ let startBtn = document.querySelector('#btn');
 
 const state = {
     gameStarted: false,
+    gameEnded: false,
     flippedCards: 0,
     totalFlips: 0,
     totalTime: 0,
@@ -123,14 +124,14 @@ state.flippedCards = 0;
 
 
 const flipCard = card => {
+    if (state.gameEnded){return;}
+
 state.flippedCards++;
 state.totalFlips++;
 
 if (!state.gameStarted) {
     startGame();
 }
-
-if (state.gameEnded){return;}
 
 if (state.flippedCards <= 2) {
     card.classList.add('flipped');
