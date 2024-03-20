@@ -1,4 +1,4 @@
-<h1><b>Animal Flip Card Memory Game<h1>
+<h1><b>Animal Flip Card Memory Game</h1>
 <h2>Description</h2>
 <p>Animal Flip Card Memory Game is a fun and engaging way to test your memory skills! This interactive game challenges players to match pairs of cards featuring adorable animals. Designed with JavaScript, it offers a smooth and enjoyable experience for both kids and adults. Perfect for improving concentration and memory through play.</p>
 
