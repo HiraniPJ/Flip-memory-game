@@ -83,12 +83,28 @@ if (eventTarget.id === 'btn') { ... }<br>
 
 
 <h2>Usage</h2>
-<p>To play the game, open index.html in your web browser. Click on two cards to flip them over. The goal is to find all pairs of matching animals with the fewest flips possible.</p>
+<p>To play the game, open index.html in your web browser. Click on two cards to flip them over. The goal is to find all pairs of matching animals with the fewest flips possible and within the time range.</p>
 
 <h2> <h2></h2> <h2></h2> <h2></h2>
 <h3></h3>
 <h3></h3>
 <h3></h3>
+
+<h1>Testing</h1>
+
+<h2>Validator Testing</h2>
+<p>We are committed to ensuring that our website is accessible to everyone. Regular accessibility testing is conducted to guarantee that users with disabilities can navigate our site with the same ease as all other users. For this we used lighthouse.</p>
+
+<img src="assets/readmeImages/lighthouse performance.JPG" alt="performance">
+
+W3C Validator
+<img src="assets/readmeImages/w3 validator test.png" alt="html validator">
+
+W3C CSS validator
+<img src="assets/readmeImages/w3 css validation test.png" alt="css validator">
+
+JShint javascript validator
+<img src="assets/readmeImages/JShint.JPG.png" alt="JShint">
 
 
 
@@ -96,6 +112,7 @@ if (eventTarget.id === 'btn') { ... }<br>
 <p></p>
 <h1>Deployment</h1>
 <h2>Cloning & Forking</h2>
+
 <h3>Fork</h3>
 <ol type="1.">
 <li>On GitHub.com, navigate to the HiraniPJ/Flip-memory-game repository.</li>
@@ -103,6 +120,7 @@ if (eventTarget.id === 'btn') { ... }<br>
 <li>By default, forks are named the same as their parent repositories. You can change the name of the fork to distinguish it further.</li>
 <li>Add a description to your fork to indicate that this is your personal copy or a place where you're planning to propose changes.</li>
 <li>Click Create fork.</li>
+
 <h3>Clone</h3>
 <ol type="1.">
 <li>Above the list of files, click the button that says 'Code'.</li>
@@ -110,10 +128,11 @@ if (eventTarget.id === 'btn') { ... }<br>
 <li>Open Terminal. Change the directory to the location where you want the cloned directory.</li>
 <li>Type git clone, and then paste the URL you copied earlier.</li>
 <li>Press Enter.</li>
+
 <h3>Local Deployment</h3>
 <ol type="1.">
 <li>Sign up to Gitpod or any other online IDE that suits your development needs.</li>
 <li>Download the Gitpod browser extension for easy access.</li>
-<li>On GitHub.com, navigate to the HiraniPJ/dreamdesign repository.</li>
+<li>On GitHub.com, navigate to the HiraniPJ/lip-memory-game repository.</li>
 <li>Above the list of files, click the button that says 'Gitpod'.</li>
 <li>This will open a new Gitpod workspace with your cloned repository ready to use.</li>
