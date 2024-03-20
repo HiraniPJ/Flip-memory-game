@@ -76,9 +76,6 @@ const parser = new DOMParser().parseFromString(cards, 'text/html');
 selectors.board.replaceWith(parser.querySelector('.board'));
 };
 
-
-
-
 // start game and timer //
 const startGame = () => {
 state.gameStarted = true;
@@ -101,6 +98,9 @@ state.loop = setInterval(() => {
     selectors.timer.innerText = `time: ${state.totalTime} sec`;
 }, 1000);
 
+//stop the timer after 30 seconds
+    setTimeout(stopTimer, 30000); // 30 seconds in milliseconds
+};
 const stopTimer = () => {
     clearInterval(state.loop);
     msg.style.display = "block";
@@ -109,10 +109,6 @@ const stopTimer = () => {
     selectors.start.classList.remove("disabled");
     selectors.start.innerText = "Restart";
 
-
-//stop the timer after 15 seconds
-    setTimeout(stopTimer, 15000); // 15 seconds in milliseconds
-};
 };
 
 const flipBackCards = () => {
